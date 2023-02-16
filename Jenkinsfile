@@ -11,18 +11,18 @@ pipeline {
     stage('Test') {
       steps {
         sh './a.out'
-        echo 'Tested Passed ✅'
+        echo 'Tested Passed '
       }
     }
     stage('Deploy') {
       steps {
-        echo 'Deployed Successfully ✅'
+        echo 'Deployed Successfully '
       }
     }
   }
   post{
     failure{
-        echo "Pipeline failed ❌"
+        echo "Pipeline failed "
     }
   }
 }
