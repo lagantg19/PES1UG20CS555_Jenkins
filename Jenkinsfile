@@ -1,29 +1,28 @@
 pipeline {
-    agent any
-
-    stages {
-        stage('Build') {
-            steps {
-                sh 'g++ -o output_file working.cpp'
-                build job : 'PES1UG20CS555-1'
-                echo 'Build Stage Successful'
-            }
-        }
-        stage('Test') {
-            steps {
-                sh './output_file'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deployment Successful'
-            }
-        }
+  agent any
+  stages {
+    stage('Build') {
+      steps {
+        sh 'g++ working.cpp'
+        build job: 'PES1UG20CS555-1'
+        echo 'Built Successfully '
+      }
     }
-
-    post {
-        failure {
-            echo 'Pipeline failed'
-        }
-    }
+    stage('Test') {
+      steps {
+        sh './a.out'
+        echo 'Tested Passed ✅'
+      }
+    }
+    stage('Deploy') {
+      steps {
+        echo 'Deployed Successfully ✅'
+      }
+    }
+  }
+  post{
+    failure{
+        echo "Pipeline failed ❌"
+    }
+  }
 }
